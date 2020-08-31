@@ -1,8 +1,8 @@
 const express = require('express');
 
 const twitterRouter = require('./routes/twitter');
-const flickrRouter = require('./routes/flickr');
-const bingnewsRouter = require('./routes/bingnews');
+// const flickrRouter = require('./routes/flickr');
+// const bingnewsRouter = require('./routes/bingnews');
 
 const app = express();
 
@@ -27,8 +27,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/trending?',twitterRouter); 
-app.use('/trending/pics?',flickrRouter);
-app.use('/trending/news?',bingnewsRouter); 
+// app.use('/trending/pics?',flickrRouter);
+// app.use('/trending/news?',bingnewsRouter); 
 
 app.listen(port, function () {
     console.log(`Express app listening at http://${hostname}:${port}/`);

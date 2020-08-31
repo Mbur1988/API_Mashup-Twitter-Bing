@@ -1,5 +1,8 @@
 const express = require('express');
 
+const flickrRouter = require('./flickr');
+const bingnewsRouter = require('./bingnews');
+
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -13,5 +16,13 @@ router.get('/', (req, res) => {
     res.write(str);
     res.end();
 });
+
+router.get('/:query/:number', (req, res) => {
+    res.write('Twitter API - ' + req.params.query + ":" + req.params.number);
+    res.end();
+});
+
+router.use('/pics?',flickrRouter);
+router.use('/news?',bingnewsRouter); 
 
 module.exports = router;
