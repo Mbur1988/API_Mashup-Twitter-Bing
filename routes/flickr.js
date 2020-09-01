@@ -1,10 +1,7 @@
-const express = require('express');
+//const express = require('express');
 
-const router = express.Router();
+function getPics(data, res) {
+    return res.json(data);
+}
 
-router.get('/:query/:number', (req, res) => {
-            res.write('Flickr API - ' + req.params.query + ":" + req.params.number);
-            res.end();
-});
-
-module.exports = router;
+module.exports.getPics = getPics;
