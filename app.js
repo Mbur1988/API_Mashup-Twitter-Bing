@@ -1,8 +1,6 @@
 const express = require('express');
 
 const twitterRouter = require('./routes/twitter');
-// const flickrRouter = require('./routes/flickr');
-// const bingnewsRouter = require('./routes/bingnews');
 
 const app = express();
 
@@ -14,10 +12,10 @@ app.get('/', (req, res) => {
     '<html><head><title>Flickr Demo</title></head>' +
     '<body>' +
     '<h1>' + 'The Flickr API Demo' + '</h1>' +
-    'Usage: http://localhost:3000/search/query/number <br>' +
+    'Usage: http://localhost:3000/trending/query/number <br>' +
     '<ul>' + '<li>query - corresponds to Flickr tags</li>'
     + '<li>number - max number of results returned</li>'
-    + '<li>Example: <a href="http://localhost:3000/search/golden-retriever/100">http://localhost:3000/search/golden-retriever/100</a></li>' +
+    + '<li>Example: <a href="http://localhost:3000/trending/Brisbane/100">http://localhost:3000/trending/Brisbane/100</a></li>' +
     '</ul>' +
     '</body></html>';
 
@@ -26,9 +24,7 @@ app.get('/', (req, res) => {
     res.end();
 });
 
-app.use('/trending?',twitterRouter); 
-// app.use('/trending/pics?',flickrRouter);
-// app.use('/trending/news?',bingnewsRouter); 
+app.use('/trending?',twitterRouter);
 
 app.listen(port, function () {
     console.log(`Express app listening at http://${hostname}:${port}/`);
