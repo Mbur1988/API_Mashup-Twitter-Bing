@@ -7,15 +7,18 @@ const port = 3000;
 
 app.get('/', (req, res) => {
     const str =  '<!DOCTYPE html>' +
-    '<html><head><title>Trending app</title></head>' +
-    '<body>' +
-    '<h1>' + 'Trending app' + '</h1>' +
-    'Usage: http://localhost:3000/trending/function/query <br>' +
-    '<ul>' + '<li>function - either pics or news </li>'
-    + '<li>query - corresponds to the location to search for trending topics</li>'
-    + '<li>Example: <a href="http://localhost:3000/trending/pics/Brisbane">http://localhost:3000/trending/pics/Brisbane</a></li>' +
-    '</ul>' +
-    '</body></html>';
+    '<html>' +
+        '<head>' + 
+            '<style>' + 
+                'body { background-color: #847d95; }' +
+                'h1 { text-align: center; padding: 200px 0 0; font-family: verdana; font-weight: 100; font-size: 80px; color: #920e11; }' +
+                'h2 { font-family: helvetica; color: #920e11; }' +
+                'p { font-family: helvetica; }' +
+            '</style>' +         
+            '<title>Twitteliser</title>' + 
+        '</head>' +
+        '<body>' + 
+            '<h1>Twitteliser</h1>';;
 
     res.writeHead(200,{'content-type': 'text/html'});
     res.write(str);
