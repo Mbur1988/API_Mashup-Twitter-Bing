@@ -1,7 +1,6 @@
 const express = require('express');
 const twit = require('twit');
-const flickrRouter = require('./flickr');
-const bingnewsRouter = require('./bingnews');
+const bingnewsRouter = require('./bing');
 const router = express.Router();
 
 const apiKey = 'JiZw0LDxyItpT9RowC0LjUUxU';
@@ -99,8 +98,5 @@ router.get('/:function/:query', (req, res) => {
         res.sendStatus(404); // HTTP status 404: NotFound
     }
 });
-
-// router.use('/pics?', flickrRouter);
-// router.use('/news?', bingnewsRouter);
 
 module.exports = router;
