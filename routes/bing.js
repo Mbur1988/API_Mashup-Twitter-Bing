@@ -8,13 +8,12 @@ const NUM_PICS_PER_TREND = 20;
 
 
 function htmlNewsBuilder(data, html) {
-    for (let i = 0; i < NUM_NEWS_PER_TREND; i++) {
+    for (let i = 0; i < data.value.length; i++) {
         html += '<p>' + data.value[i].name + ' - Link to article:<br /><a href=' + 
         data.value[i].url + '>' + data.value[i].url + '</a></p>'
     }
     return html;
 }
-
 
 function getTrendNews(top10Trends, res, count, max, html) {
     html += '<h2>' + (count+1) + '. #' + top10Trends[count] + '</h2>';
@@ -33,8 +32,6 @@ function getTrendNews(top10Trends, res, count, max, html) {
 }
 
 function getNews(top10Trends, query, res) {
-    console.log(top10Trends);
-    //return res.json(data);
     let html = '<!DOCTYPE html>' +
         '<html>' +
             '<head>' + 
@@ -51,15 +48,12 @@ function getNews(top10Trends, query, res) {
     getTrendNews(top10Trends, res, 0, NUM_TRENDS_TO_DISPLAY-1, html);
 }
 
-
-
 function htmlPicsBuilder(data, html) {
-    for (let i = 0; i < NUM_PICS_PER_TREND; i++) {
+    for (let i = 0; i < data.value.length; i++) {
         html += '<img src=' + data.value[i].contentUrl + ' alt=' + data.value[i].name + ' height="200" /> ';
     }
     return html;
 }
-
 
 function getTrendPics(top10Trends, res, count, max, html) {
     html += '<h2>' + (count+1) + '. #' + top10Trends[count] + '</h2>';
@@ -78,8 +72,6 @@ function getTrendPics(top10Trends, res, count, max, html) {
 }
 
 function getPics(top10Trends, query, res) {
-    console.log(top10Trends);
-    //return res.json(data);
     let html = '<!DOCTYPE html>' +
         '<html>' +
             '<head>' + 
