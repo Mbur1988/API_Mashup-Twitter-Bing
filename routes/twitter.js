@@ -1,6 +1,6 @@
 const express = require('express');
 const twit = require('twit');
-const bingnewsRouter = require('./bing');
+const bingRouter = require('./bing');
 const router = express.Router();
 
 const apiKey = 'JiZw0LDxyItpT9RowC0LjUUxU';
@@ -21,9 +21,9 @@ function getTop10Trends(data, req, res) {
         top10Trends.push(data[0].trends[i].name)
     }
     if (req.params.function == 'pics') {
-        flickrRouter.getPics(top10Trends, req.params.query, res);
+        bingRouter.getPics(top10Trends, req.params.query, res);
     } else {
-        bingnewsRouter.getNews(top10Trends, req.params.query, res);
+        bingRouter.getNews(top10Trends, req.params.query, res);
     }
 }
 
