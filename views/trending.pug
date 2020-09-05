@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  h1 Trending
+  each trend in trending
+    .item
+        button.articleTitle #{'#' + trend}
