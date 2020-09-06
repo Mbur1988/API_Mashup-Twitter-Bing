@@ -1,21 +1,27 @@
 // Fetch the summary of the article from our Express API
-const fetchSummary = (event) => {
-  const title = event.target.textContent;
-
-  fetch(`/api/summary/${title}`)
-    .then((res) => res.json())
-    .then((data) => {
-      const parent = event.target.parentElement;
-      const p = document.createElement("p");
-      p.textContent = data.summary;
+const fetchSummary = (event) => {  
+  const trend = event.target.textContent.substring(1);
+  //console.log(trend);
+  fetch(`/trending/news/${trend}`)
+  .then((res) => res.json())
+  .then((data) => {
+    console.log(data);
+    let parent = event.target.parentElement;   
+    for (let story of data.stories) {      
+      let p = document.createElement("p");
+      let a = document.createElement("a");
+      a.href = story.url;
+      a.textContent = story.name
+      p.appendChild(a);
       parent.append(p);
-    })
-    .catch((error) => console.log(error));
+    }
+  })
+  .catch((error) => console.log(error));
 };
 
 // Add an event listener to each article title
-const articleTitles = document.getElementsByClassName("articleTitle");
-
-for (let title of articleTitles) {
-  title.addEventListener("click", (event) => fetchSummary(event));
+const trends = document.getElementsByClassName("trend");
+//console.log(trends);
+for (let trend of trends) {
+  trend.addEventListener("click", (event) => fetchSummary(event));
 }

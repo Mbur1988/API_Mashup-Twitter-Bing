@@ -1,7 +1,10 @@
 extends layout
 
 block content
-  h1 Trending
+  h1 Top 10 Trends in #{location}
+  p Click corresponding buttons to view either images or news articles related to each trend. 
   each trend in trending
     .item
-        button.articleTitle #{'#' + trend}
+        button.trend #{'#' + trend}
+
+  script(src='/javascripts/summary.js')

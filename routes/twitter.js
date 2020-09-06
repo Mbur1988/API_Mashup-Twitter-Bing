@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const twit = require('twit');
 
 const apiKey = 'JiZw0LDxyItpT9RowC0LjUUxU';
@@ -43,7 +43,7 @@ router.get('/:query', (req, res) => {
     return top10Trends;
 
   }) .then (result => {
-    res.render("trending", { trending: result });
+    res.render("trending", { trending: result, location: req.params.query});
     
   }) .catch(function (err) {
     console.log('caught error', err.stack)
