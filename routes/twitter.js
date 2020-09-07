@@ -43,7 +43,11 @@ router.get('/:query', (req, res) => {
     return top10Trends;
 
   }) .then (result => {
-    res.render("trending", { trending: result, location: req.params.query});
+    res.render("trending", { 
+      trending: result,
+      title: 'Trending in ' + req.params.query,
+      location: req.params.query
+    });
     
   }) .catch(function (err) {
     console.log('caught error', err.stack)
