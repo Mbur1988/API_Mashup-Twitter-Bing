@@ -1,6 +1,22 @@
 body {
+  background-image: url('https://images.pexels.com/photos/1242348/pexels-photo-1242348.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+/* h1 {
+
+}
+
+h2 {
+
+} */
+
+p {
+  font-size: 12px;
 }
 
 .item {
@@ -13,7 +29,7 @@ button {
   padding: 0;
   color: #069;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 12px;
 }
 
 button:hover {
