@@ -5,7 +5,6 @@ const bing = require('node-bing-api')({ accKey: "2e4ead038dae45889f7f713afd5fc00
 const NUM_NEWS_PER_TREND = 10;
 
 router.get('/:trend', (req, res) => { 
-    console.log(req.params.trend);
     let params = { count: NUM_NEWS_PER_TREND }
     bing.news(req.params.trend, params, function (error, resp, data) {
         let stories = data.value;
