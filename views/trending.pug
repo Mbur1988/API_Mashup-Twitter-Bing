@@ -4,7 +4,10 @@ block content
   h1 Top 10 Trends in #{location}
   p Click corresponding buttons to view either images or news articles related to each trend. 
   each trend in trending
-    .item
-        button.trend #{'#' + trend}
+      .item
+        h2 ##{trend} 
+          button.news News
+          | 
+          button.pics Pics
 
   script(src='/javascripts/summary.js')
