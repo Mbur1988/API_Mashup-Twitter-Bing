@@ -14,44 +14,64 @@ const T = new twit({
   access_token_secret: accessTokenSecret
 })
 
-router.get('/', function(req, res, next) {
-  next(createError(404));
-  res.send('respond with a resource');
+router.get('/', function (req, res, next) {
+  let params = { id: 1, exclude: 'hashtags' }
+  return T.get('trends/place', params)
+
+    .then(result => {
+      const top10Trends = []
+      for (let i = 0; i < 10; i++) {
+        top10Trends.push(result.data[0].trends[i].name)
+      }
+      return top10Trends;
+
+    }).then(result => {
+      res.render("trending", {
+        trending: result,
+        title: 'Trending Worldwide',
+        location: 'the World'
+      });
+
+    }).catch(function (err) {
+      console.log('caught error', err.stack)
+    })
 });
 
-router.get('/:query', (req, res) => { 
+router.get('/:query', (req, res) => {
   let params = { query: req.params.query }
   T.get('geo/search', params)
 
-  .then(result => {
-    let params = { 
-      lat: result.data.result.places[0].centroid[1], 
-      long: result.data.result.places[0].centroid[0] }
+    .then(result => {
+      let params = {
+        lat: result.data.result.places[0].centroid[1],
+        long: result.data.result.places[0].centroid[0]
+      }
       return T.get('trends/closest', params)
 
-  }) .then (result => {
-    let params = {
+    }).then(result => {
+      let params = {
         id: result.data[0].woeid,
-        exclude: 'hashtags' }
-    return T.get('trends/place', params)
+        exclude: 'hashtags'
+      }
+      return T.get('trends/place', params)
 
-  }) .then (result => {
-    const top10Trends = []
-    for(let i = 0; i < 10; i++) {
-      top10Trends.push(result.data[0].trends[i].name)
-    }
-    return top10Trends;
+    }).then(result => {
+      const top10Trends = []
+      for (let i = 0; i < 10; i++) {
+        top10Trends.push(result.data[0].trends[i].name)
+      }
+      return top10Trends;
 
-  }) .then (result => {
-    res.render("trending", { 
-      trending: result,
-      title: 'Trending in ' + req.params.query,
-      location: req.params.query
-    });
-    
-  }) .catch(function (err) {
-    console.log('caught error', err.stack)
-  })
+    }).then(result => {
+      res.render("trending", {
+        trending: result,
+        title: 'Trending in ' + req.params.query,
+        location: req.params.query
+      });
+
+    }).catch(function (err) {
+      console.log('caught error', err.stack)
+    })
 });
 
 module.exports = router;
